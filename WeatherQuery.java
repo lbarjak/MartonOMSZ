@@ -27,10 +27,13 @@ public class WeatherQuery {
 	ArrayList<String> stringValues;
 	ArrayList<Float> temperatureValues = new ArrayList<>();
 	Float sum = 0f;
-	String dateString = "2023-02-17";
 	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+	String dateString = new Dates().now(0);
 	
 	public void query() throws IOException {
+		
+		System.out.println(dateString);
+		//dateString = "2023-02-17";
 		
 		URL url = new URL("https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" 
 		+ id + "&date=" + dateString);
