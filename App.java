@@ -1,12 +1,12 @@
 package eu.barjak.java.MartonOmsz;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class App 
 {
-    public static void main( String[] args ) throws IOException
+    public static void main( String[] args ) throws IOException, ParseException
     {
-        //System.out.println( "Hello World!" );
     	new WeatherQuery().query();
 
     }
