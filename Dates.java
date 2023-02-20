@@ -1,10 +1,10 @@
 package eu.barjak.java.MartonOmsz;
 
-import java.time.DayOfWeek;
+//import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
+//import java.time.format.TextStyle;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,14 +15,8 @@ public class Dates {
     public String now(int difference) {
     	LocalDate now = LocalDate.now();
     	
-    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd EEEE HH:mm:ss", huLoc);  
     	System.out.println(dtf.format(LocalDateTime.now()));
-    	dtf = DateTimeFormatter.ofPattern("HH:mm");  
-    	System.out.println(dtf.format(LocalDateTime.now()));
-    	
-    	DayOfWeek dow = now.getDayOfWeek();
-    	String dayName = dow.getDisplayName(TextStyle.FULL, huLoc);
-    	System.out.println(dayName);
     	return (now.plusDays(difference).toString());
     }
     public void diff(Date start, Date stop) {
