@@ -6,17 +6,27 @@ public class Temperature {
 	private String day;
 	private Float actualRoomTemp;
 	private Float finalRoomTemp;
+	private Float outTemp;
 	
 	public Temperature() {
 	}
 	
-	public Temperature(String time, String day, Float actualRoomTemp, Float finalRoomTemp){
+	public Temperature(String time, String day, Float actualRoomTemp, Float finalRoomTemp, Float outTemp){
 		this.time = time;
 		this.day = day;
 		this.actualRoomTemp = actualRoomTemp;
 		this.finalRoomTemp = finalRoomTemp;
+		this.outTemp = outTemp;
 	}
 	
+	public Float getOutTemp() {
+		return outTemp;
+	}
+
+	public void setOutTemp(Float outTemp) {
+		this.outTemp = outTemp;
+	}
+
 	public String getTime() {
 		return this.time;
 	}
@@ -41,6 +51,10 @@ public class Temperature {
 	public void setFinalRoomTemp(Float finalRoomTemp) {
 		this.finalRoomTemp = finalRoomTemp;
 	}
-
+	@Override
+	public String toString() {
+		return "Temperature [time=" + time + ", day=" + day + ", actualRoomTemp=" + actualRoomTemp + ", finalRoomTemp="
+				+ finalRoomTemp + ", outTemp=" + outTemp + "]";
+	}
 	
 }
