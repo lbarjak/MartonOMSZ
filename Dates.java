@@ -1,7 +1,6 @@
 package eu.barjak.java.MartonOmsz;
 
 import java.time.DayOfWeek;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +14,6 @@ public class Dates {
     
     public String now(int difference) {
     	LocalDate now = LocalDate.now();
-    	System.out.println(Instant.now());
     	
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
     	System.out.println(dtf.format(LocalDateTime.now()));

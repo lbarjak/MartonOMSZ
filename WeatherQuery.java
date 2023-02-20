@@ -20,27 +20,25 @@ public class WeatherQuery implements GlobalVariables {
 	ArrayList<String> stringValues;
 	ArrayList<Float> temperatureValues = new ArrayList<>();
 	Float sum = 0f;
-	int id = 615; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
-	String dateString = new Dates().now(0);
+	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+	String now = new Dates().now(0);
 	
 	public WeatherQuery() throws ParseException {
-		String myTime = "23:50";
+		String initTime = "23:50";
 		SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-		Date d = df.parse(myTime);
+		Date d = df.parse(initTime);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
 		for(int i=0; i<144; i++) {
 			cal.add(Calendar.MINUTE, 10);
 			String newTime = df.format(cal.getTime());
-			//System.out.println("newTime: " + newTime);
 			times.add(newTime);
 		}
 	}
 	
-	public void query() throws IOException, ParseException {
+	public void query(String dateString) throws IOException, ParseException {
 		
-		System.out.println(dateString);
-		//dateString = "2023-02-17";
+		System.out.println(dateString + " " + now);
 		
 		URL url = new URL("https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" 
 		+ id + "&date=" + dateString);
@@ -53,7 +51,7 @@ public class WeatherQuery implements GlobalVariables {
 			}
 		}
 
-		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");
+		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
 		Matcher matcher = pattern.matcher(inputLine);
 		while (matcher.find()) {
             stringValues = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));

@@ -7,7 +7,7 @@ public class App
 {
     public static void main( String[] args ) throws IOException, ParseException
     {
-    	new WeatherQuery().query();
+    	new WeatherQuery().query("2023-02-17");
 
     }
 }
