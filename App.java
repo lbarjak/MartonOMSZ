@@ -18,7 +18,7 @@ public class App implements GlobalVariables {
     	Dates dates = new Dates();
 		dates.elapsedDays(startDate);//startDate - nowDate --> LOCALDATES
 		
-		new WeatherQuery().query(startDate);//LOCALDATES --> TEMPERATURES
+		new WeatherQuery().steps();//LOCALDATES --> TEMPERATURES_MAP
 
 		new Writeout().toScreen();
 

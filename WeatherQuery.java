@@ -20,9 +20,15 @@ public class WeatherQuery implements GlobalVariables {
 	Float outdoorTemp;
 	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	
-	public void query(LocalDate startDate) throws IOException, ParseException {
+	public void steps() throws IOException, ParseException {
+		for(LocalDate localDate : LOCALDATES) {
+			query(localDate);
+		}
+	}
+	
+	public void query(LocalDate actualDate) throws IOException, ParseException {
 		URL url = new URL("https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" 
-		+ id + "&date=" + startDate.toString());
+		+ id + "&date=" + actualDate.toString());
 		BufferedReader in;
 		in = new BufferedReader(new InputStreamReader(url.openStream()));
 		String inputLine;
@@ -36,29 +42,29 @@ public class WeatherQuery implements GlobalVariables {
 		while (matcher.find()) {
             stringTempValues = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
-		addTimes();
+		addTimes(actualDate);
 		for (int i = 0; i <= stringTempValues.size() - 1; i++) {
 			if(!stringTempValues.get(i).equals("null")) {
 				outdoorTemp = Float.parseFloat(stringTempValues.get(i));
-				TEMPERATURES.get(i).setOutTemp(outdoorTemp);
+				TEMPERATURES_MAP.get(actualDate).get(i).setOutTemp(outdoorTemp);
 			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
-				TEMPERATURES.remove(i);
+				TEMPERATURES_MAP.get(actualDate).remove(i);
 				stringTempValues.remove(i--);
 			}
 		}
 	}
 	
-	public void addTimes() throws ParseException {
+	public void addTimes(LocalDate actualDate) throws ParseException {
 		String initTime = "23:50";
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 		Date d = sdf.parse(initTime);
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(d);
 		for(int i = 0; i < 144; i++) {
-			TEMPERATURES.add(new Temperature());
+			TEMPERATURES_MAP.get(actualDate).add(new Temperature());
 			cal.add(Calendar.MINUTE, 10);
 			String newTime = sdf.format(cal.getTime());
-			TEMPERATURES.get(i).setTime(newTime);
+			TEMPERATURES_MAP.get(actualDate).get(i).setTime(newTime);
 		}
 	}
 }

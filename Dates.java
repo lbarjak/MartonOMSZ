@@ -3,6 +3,7 @@ package eu.barjak.java.MartonOmsz;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class Dates implements GlobalVariables {
@@ -17,6 +18,9 @@ public class Dates implements GlobalVariables {
 		for(int i = 0; i <= elapsed; i++) {
 			tmpDate = startDate.plus(Period.ofDays(i));
 			LOCALDATES.add(tmpDate);
+		}
+		for(LocalDate localDate : LOCALDATES) {
+			TEMPERATURES_MAP.put(localDate, new ArrayList<Temperature>());
 		}
 	}
 }
