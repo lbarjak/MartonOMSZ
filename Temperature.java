@@ -22,11 +22,9 @@ public class Temperature {
 	public Float getOutTemp() {
 		return outTemp;
 	}
-
 	public void setOutTemp(Float outTemp) {
 		this.outTemp = outTemp;
 	}
-
 	public String getTime() {
 		return this.time;
 	}
@@ -50,11 +48,6 @@ public class Temperature {
 	}
 	public void setFinalRoomTemp(Float finalRoomTemp) {
 		this.finalRoomTemp = finalRoomTemp;
-	}
-	@Override
-	public String toString() {
-		return "Temperature [time=" + time + ", day=" + day + ", actualRoomTemp=" + actualRoomTemp + ", finalRoomTemp="
-				+ finalRoomTemp + ", outTemp=" + outTemp + "]";
 	}
 	
 }

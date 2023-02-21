@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -16,27 +17,12 @@ import java.util.regex.Pattern;
 public class WeatherQuery implements GlobalVariables {
 	
 	ArrayList<String> stringTempValues;
-	Float outTemp;
+	Float outdoorTemp;
 	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	
-	public WeatherQuery() throws ParseException {
-		String initTime = "23:50";
-		SimpleDateFormat df = new SimpleDateFormat("HH:mm");
-		Date d = df.parse(initTime);
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(d);
-		for(int i=0; i<144; i++) {
-			TEMPERATURES.add(new Temperature());
-			cal.add(Calendar.MINUTE, 10);
-			String newTime = df.format(cal.getTime());
-			TEMPERATURES.get(i).setTime(newTime);
-		}
-	}
-	
-	public void query(String dateString) throws IOException, ParseException {
-		
+	public void query(LocalDate startDate) throws IOException, ParseException {
 		URL url = new URL("https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" 
-		+ id + "&date=" + dateString);
+		+ id + "&date=" + startDate.toString());
 		BufferedReader in;
 		in = new BufferedReader(new InputStreamReader(url.openStream()));
 		String inputLine;
@@ -45,22 +31,34 @@ public class WeatherQuery implements GlobalVariables {
 				break;
 			}
 		}
-
 		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
 		Matcher matcher = pattern.matcher(inputLine);
 		while (matcher.find()) {
             stringTempValues = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
-		//a stringTempValues mérete csökken a ciklusban, "szerencsére"
+		addTimes();
 		for (int i = 0; i <= stringTempValues.size() - 1; i++) {
 			if(!stringTempValues.get(i).equals("null")) {
-				outTemp = Float.parseFloat(stringTempValues.get(i));
-				TEMPERATURES.get(i).setOutTemp(outTemp);
+				outdoorTemp = Float.parseFloat(stringTempValues.get(i));
+				TEMPERATURES.get(i).setOutTemp(outdoorTemp);
 			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
 				TEMPERATURES.remove(i);
 				stringTempValues.remove(i--);
 			}
 		}
-		new Writeout().toScreen();
+	}
+	
+	public void addTimes() throws ParseException {
+		String initTime = "23:50";
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		Date d = sdf.parse(initTime);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		for(int i = 0; i < 144; i++) {
+			TEMPERATURES.add(new Temperature());
+			cal.add(Calendar.MINUTE, 10);
+			String newTime = sdf.format(cal.getTime());
+			TEMPERATURES.get(i).setTime(newTime);
+		}
 	}
 }
