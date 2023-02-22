@@ -5,13 +5,13 @@ import java.time.LocalDate;
 public class Writeout implements GlobalVariables {
 	
 	String time;
-	Float outTemp;
+	Double outdoorTemp;
 	
 	public void toScreen() {
 		for(Temperature temperature : TEMPERATURES) {
 			time = temperature.getTime();
-			outTemp = temperature.getOutTemp();
-			System.out.println(time + "|" + outTemp);
+			outdoorTemp = temperature.getOutTemp();
+			System.out.println(time + "|" + outdoorTemp);
 		}
 	}
 

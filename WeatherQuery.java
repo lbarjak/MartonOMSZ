@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class WeatherQuery implements GlobalVariables {
 	
 	ArrayList<String> outdoorTemperatureString;
-	Float outdoorTemperature;
+	Double outdoorTemperature;
 	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	
 	public void steps() throws IOException, ParseException {
@@ -45,7 +45,7 @@ public class WeatherQuery implements GlobalVariables {
 		addTimes(actualDate);
 		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
 			if(!outdoorTemperatureString.get(i).equals("null")) {
-				outdoorTemperature = Float.parseFloat(outdoorTemperatureString.get(i));
+				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutTemp(outdoorTemperature);
 			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
 				TEMPERATURES_MAP.get(actualDate).remove(i);

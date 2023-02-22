@@ -4,14 +4,14 @@ public class Temperature {
 	
 	private String time;
 	private String day;
-	private Float actualRoomTemp;
-	private Float finalRoomTemp;
-	private Float outdoorTemp;
+	private Double actualRoomTemp;
+	private Double finalRoomTemp;
+	private Double outdoorTemp;
 	
 	public Temperature() {
 	}
 	
-	public Temperature(String time, String day, Float actualRoomTemp, Float finalRoomTemp, Float outdoorTemp){
+	public Temperature(String time, String day, Double actualRoomTemp, Double finalRoomTemp, Double outdoorTemp){
 		this.time = time;
 		this.day = day;
 		this.actualRoomTemp = actualRoomTemp;
@@ -19,10 +19,10 @@ public class Temperature {
 		this.outdoorTemp = outdoorTemp;
 	}
 	
-	public Float getOutTemp() {
+	public Double getOutTemp() {
 		return this.outdoorTemp;
 	}
-	public void setOutTemp(Float outdoorTemp) {
+	public void setOutTemp(Double outdoorTemp) {
 		this.outdoorTemp = outdoorTemp;
 	}
 	public String getTime() {
@@ -37,16 +37,16 @@ public class Temperature {
 	public void setDay(String day) {
 		this.day = day;
 	}
-	public Float getActualRoomTemp() {
+	public Double getActualRoomTemp() {
 		return this.actualRoomTemp;
 	}
-	public void setActualRoomTemp(Float actualRoomTemp) {
+	public void setActualRoomTemp(Double actualRoomTemp) {
 		this.actualRoomTemp = actualRoomTemp;
 	}
-	public Float getFinalRoomTemp() {
+	public Double getFinalRoomTemp() {
 		return this.finalRoomTemp;
 	}
-	public void setFinalRoomTemp(Float finalRoomTemp) {
+	public void setFinalRoomTemp(Double finalRoomTemp) {
 		this.finalRoomTemp = finalRoomTemp;
 	}
 	
