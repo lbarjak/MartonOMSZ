@@ -9,10 +9,14 @@ public class Calculation implements GlobalVariables {
 	Double roomTemp1;
 	Double roomTemp2;
 	Double outdoorTemp;
+	Double multiplier;
+	Double exponent;
 		
 	public void calculation(Double thermalTimeConstant, String startTimeString, Double initialRoomTemperature) {
 		
 		roomTemp1 = initialRoomTemperature;
+		exponent = -(10.0/60)/thermalTimeConstant;
+		multiplier = Math.exp(exponent);
 		
 		for(LocalDate localDate : LOCALDATES) {
 			for(Temperature temperature : TEMPERATURES_MAP.get(localDate)) {
@@ -31,7 +35,7 @@ public class Calculation implements GlobalVariables {
 	}
 	
 	public void tau() {
-		roomTemp2 = outdoorTemp + (roomTemp1 - outdoorTemp) * 0.9966722;
+		roomTemp2 = outdoorTemp + (roomTemp1 - outdoorTemp) * multiplier;
 	}
 
 }
