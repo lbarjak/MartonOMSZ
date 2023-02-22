@@ -4,37 +4,34 @@ import java.time.LocalDate;
 
 public class Calculation implements GlobalVariables {
 	
-	public Calculation(Double thermalTimeConstant) {
-		
-	}
-	
 	String time;
 	String day;
-	Double actualRoomTemp1;
-	Double actualRoomTemp2;
-	Double finalRoomTemp;
+	Double roomTemp1;
+	Double roomTemp2;
 	Double outdoorTemp;
 		
-	public void calculation(String startTimeString, Double initialRoomTemperature) {
+	public void calculation(Double thermalTimeConstant, String startTimeString, Double initialRoomTemperature) {
+		
+		roomTemp1 = initialRoomTemperature;
 		
 		for(LocalDate localDate : LOCALDATES) {
-			//System.out.println(localDate);
 			for(Temperature temperature : TEMPERATURES_MAP.get(localDate)) {
-//				time = temperature.getTime();
-//				outdoorTemp = temperature.getOutTemp();
-//				System.out.println(time + "|" + outdoorTemp);
 				TEMPERATURES.add(temperature);
 			}
-			TEMPERATURES.get(0).setActualRoomTemp(initialRoomTemperature);
 		}
+			
 		for(Temperature temperature : TEMPERATURES) {
 //			time = temperature.getTime();
-//			outdoorTemp = temperature.getOutTemp();
+			temperature.setRoomTemp1(roomTemp1);
+			outdoorTemp = temperature.getOutdoorTemp();
+			tau();
+			temperature.setRoomTemp2(roomTemp2);
+			roomTemp1 = roomTemp2;
 		}
 	}
 	
-	public Double tau() {
-		return actualRoomTemp2 = outdoorTemp + (actualRoomTemp1 - outdoorTemp) * Math.pow(2.71828, (-(10/60)/50));
+	public void tau() {
+		roomTemp2 = outdoorTemp + (roomTemp1 - outdoorTemp) * 0.9966722;
 	}
 
 }

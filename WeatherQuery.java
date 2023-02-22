@@ -46,7 +46,7 @@ public class WeatherQuery implements GlobalVariables {
 		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
 			if(!outdoorTemperatureString.get(i).equals("null")) {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
-				TEMPERATURES_MAP.get(actualDate).get(i).setOutTemp(outdoorTemperature);
+				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
 			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
 				TEMPERATURES_MAP.get(actualDate).remove(i);
 				outdoorTemperatureString.remove(i--);

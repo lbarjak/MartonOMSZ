@@ -22,7 +22,7 @@ public class App implements GlobalVariables {
 		
 		new WeatherQuery().steps();//LOCALDATES --> TEMPERATURES_MAP
 		
-		new Calculation(thermalTimeConstant).calculation(startTimeString, initialRoomTemperature);
+		new Calculation().calculation(thermalTimeConstant, startTimeString, initialRoomTemperature);
 
 		new Writeout().toScreen();
 

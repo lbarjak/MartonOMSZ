@@ -4,25 +4,25 @@ public class Temperature {
 	
 	private String time;
 	private String day;
-	private Double actualRoomTemp;
-	private Double finalRoomTemp;
+	private Double roomTemp1;
+	private Double roomTemp2;
 	private Double outdoorTemp;
 	
 	public Temperature() {
 	}
 	
-	public Temperature(String time, String day, Double actualRoomTemp, Double finalRoomTemp, Double outdoorTemp){
+	public Temperature(String time, String day, Double roomTemp1, Double roomTemp2, Double outdoorTemp){
 		this.time = time;
 		this.day = day;
-		this.actualRoomTemp = actualRoomTemp;
-		this.finalRoomTemp = finalRoomTemp;
+		this.roomTemp1 = roomTemp1;
+		this.roomTemp2 = roomTemp2;
 		this.outdoorTemp = outdoorTemp;
 	}
 	
-	public Double getOutTemp() {
+	public Double getOutdoorTemp() {
 		return this.outdoorTemp;
 	}
-	public void setOutTemp(Double outdoorTemp) {
+	public void setOutdoorTemp(Double outdoorTemp) {
 		this.outdoorTemp = outdoorTemp;
 	}
 	public String getTime() {
@@ -37,17 +37,17 @@ public class Temperature {
 	public void setDay(String day) {
 		this.day = day;
 	}
-	public Double getActualRoomTemp() {
-		return this.actualRoomTemp;
+	public Double getRoomTemp1() {
+		return this.roomTemp1;
 	}
-	public void setActualRoomTemp(Double actualRoomTemp) {
-		this.actualRoomTemp = actualRoomTemp;
+	public void setRoomTemp1(Double roomTemp1) {
+		this.roomTemp1 = roomTemp1;
 	}
-	public Double getFinalRoomTemp() {
-		return this.finalRoomTemp;
+	public Double getRoomTemp2() {
+		return this.roomTemp2;
 	}
-	public void setFinalRoomTemp(Double finalRoomTemp) {
-		this.finalRoomTemp = finalRoomTemp;
+	public void setRoomTemp2(Double roomTemp2) {
+		this.roomTemp2 = roomTemp2;
 	}
 	
 }
