@@ -1,6 +1,8 @@
 package eu.barjak.java.MartonOmsz;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class Calculation implements GlobalVariables {
 	
@@ -11,6 +13,8 @@ public class Calculation implements GlobalVariables {
 	Double outdoorTemp;
 	Double multiplier;
 	Double exponent;
+	Locale huLoc = new Locale("hu");
+	DateTimeFormatter napNeveMagyarul = DateTimeFormatter.ofPattern("EEEE", huLoc);
 		
 	public void calculation(Double thermalTimeConstant, String startTimeString, Double initialRoomTemperature) {
 		
@@ -21,6 +25,9 @@ public class Calculation implements GlobalVariables {
 		for(LocalDate localDate : LOCALDATES) {
 			for(Temperature temperature : TEMPERATURES_MAP.get(localDate)) {
 				TEMPERATURES.add(temperature);
+				temperature.setDate(localDate);
+				day=localDate.format(DateTimeFormatter.ofPattern("EEEE", huLoc));
+				temperature.setDay(day);
 			}
 		}
 			

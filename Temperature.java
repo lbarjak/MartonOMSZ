@@ -1,7 +1,10 @@
 package eu.barjak.java.MartonOmsz;
 
+import java.time.LocalDate;
+
 public class Temperature {
 	
+	private LocalDate date;
 	private String time;
 	private String day;
 	private Double roomTemp1;
@@ -11,7 +14,8 @@ public class Temperature {
 	public Temperature() {
 	}
 	
-	public Temperature(String time, String day, Double roomTemp1, Double roomTemp2, Double outdoorTemp){
+	public Temperature(LocalDate date, String time, String day, Double roomTemp1, Double roomTemp2, Double outdoorTemp){
+		this.date = date;
 		this.time = time;
 		this.day = day;
 		this.roomTemp1 = roomTemp1;
@@ -24,6 +28,12 @@ public class Temperature {
 	}
 	public void setOutdoorTemp(Double outdoorTemp) {
 		this.outdoorTemp = outdoorTemp;
+	}
+	public LocalDate getDate() {
+		return this.date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	public String getTime() {
 		return this.time;
