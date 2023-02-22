@@ -8,13 +8,10 @@ public class Writeout implements GlobalVariables {
 	Float outTemp;
 	
 	public void toScreen() {
-		for(LocalDate localDate : LOCALDATES) {
-			System.out.println(localDate);
-			for(Temperature temperature : TEMPERATURES_MAP.get(localDate)) {
-				time = temperature.getTime();
-				outTemp = temperature.getOutTemp();
-				System.out.println(time + "|" + outTemp);
-			}
+		for(Temperature temperature : TEMPERATURES) {
+			time = temperature.getTime();
+			outTemp = temperature.getOutTemp();
+			System.out.println(time + "|" + outTemp);
 		}
 	}
 

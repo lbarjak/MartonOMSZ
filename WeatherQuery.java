@@ -16,8 +16,8 @@ import java.util.regex.Pattern;
 
 public class WeatherQuery implements GlobalVariables {
 	
-	ArrayList<String> stringTempValues;
-	Float outdoorTemp;
+	ArrayList<String> outdoorTemperatureString;
+	Float outdoorTemperature;
 	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	
 	public void steps() throws IOException, ParseException {
@@ -40,16 +40,16 @@ public class WeatherQuery implements GlobalVariables {
 		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
 		Matcher matcher = pattern.matcher(inputLine);
 		while (matcher.find()) {
-            stringTempValues = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
+            outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
 		addTimes(actualDate);
-		for (int i = 0; i <= stringTempValues.size() - 1; i++) {
-			if(!stringTempValues.get(i).equals("null")) {
-				outdoorTemp = Float.parseFloat(stringTempValues.get(i));
-				TEMPERATURES_MAP.get(actualDate).get(i).setOutTemp(outdoorTemp);
+		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
+			if(!outdoorTemperatureString.get(i).equals("null")) {
+				outdoorTemperature = Float.parseFloat(outdoorTemperatureString.get(i));
+				TEMPERATURES_MAP.get(actualDate).get(i).setOutTemp(outdoorTemperature);
 			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
 				TEMPERATURES_MAP.get(actualDate).remove(i);
-				stringTempValues.remove(i--);
+				outdoorTemperatureString.remove(i--);
 			}
 		}
 	}

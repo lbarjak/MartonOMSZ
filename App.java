@@ -9,6 +9,8 @@ public class App implements GlobalVariables {
 	
 	static String startDateString = "2023-02-18";
 	static String startTimeString = "18:00";
+	static Float initialRoomTemperature = 17f;
+	static final Float thermalTimeConstant = 50f;
 	
     public static void main( String[] args ) throws IOException, ParseException {
     	
@@ -20,7 +22,7 @@ public class App implements GlobalVariables {
 		
 		new WeatherQuery().steps();//LOCALDATES --> TEMPERATURES_MAP
 		
-		new Calculation();
+		new Calculation().calculation(startTimeString, initialRoomTemperature, thermalTimeConstant);
 
 		new Writeout().toScreen();
 
