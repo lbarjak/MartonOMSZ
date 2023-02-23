@@ -18,7 +18,7 @@ public class WeatherQuery implements GlobalVariables {
 	
 	ArrayList<String> outdoorTemperatureString;
 	Double outdoorTemperature;
-	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+	int id = 444; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	
 	public void steps() throws IOException, ParseException {
 		for(LocalDate localDate : LOCALDATES) {
@@ -47,9 +47,9 @@ public class WeatherQuery implements GlobalVariables {
 			if(!outdoorTemperatureString.get(i).equals("null")) {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
-			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
-				TEMPERATURES_MAP.get(actualDate).remove(i);
-				outdoorTemperatureString.remove(i--);
+//			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
+//				TEMPERATURES_MAP.get(actualDate).remove(i);
+//				outdoorTemperatureString.remove(i--);
 			}
 		}
 	}
