@@ -18,17 +18,17 @@ public class WeatherQuery implements GlobalVariables {
 	
 	ArrayList<String> outdoorTemperatureString;
 	Double outdoorTemperature;
-	int id = 444; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	LocalDate today = LocalDate.now();
+	int indexOfTEMPERATURES = 0;
 	
-	public void steps() throws IOException, ParseException {
+	public int steps() throws IOException, ParseException {
 		for(LocalDate localDate : LOCALDATES) {
 			if(!localDate.isAfter(today)) {
 				query(localDate);
-			} else {
-				//itt jöhet az átlaggal vagy az előjelzéssel feltöltés
 			}
 		}
+		return indexOfTEMPERATURES;
 	}
 	
 	public void query(LocalDate actualDate) throws IOException, ParseException {
@@ -47,29 +47,17 @@ public class WeatherQuery implements GlobalVariables {
 		while (matcher.find()) {
             outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
-		addTimes(actualDate);
+
 		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
 			if(!outdoorTemperatureString.get(i).equals("null")) {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
+				indexOfTEMPERATURES++;
 //			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
 //				TEMPERATURES_MAP.get(actualDate).remove(i);
 //				outdoorTemperatureString.remove(i--);
 			}
 		}
 	}
-	
-	public void addTimes(LocalDate actualDate) throws ParseException {
-		String initTime = "23:50";
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-		Date d = sdf.parse(initTime);
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(d);
-		for(int i = 0; i < 144; i++) {
-			TEMPERATURES_MAP.get(actualDate).add(new Temperature());
-			cal.add(Calendar.MINUTE, 10);
-			String newTime = sdf.format(cal.getTime());
-			TEMPERATURES_MAP.get(actualDate).get(i).setTime(newTime);
-		}
-	}
+
 }

@@ -1,12 +1,16 @@
 package eu.barjak.java.MartonOmsz;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Dates implements GlobalVariables {
 	
-	public void elapsedDays(LocalDate startDate, LocalDate endDate) {
+	public void elapsedDays(LocalDate startDate, LocalDate endDate) throws ParseException {
 		LocalDate tmpDate;
 		//LocalDate nowDate = LocalDate.now();
 		//long elapsed = Period.between(startDate, nowDate).getDays();
@@ -17,6 +21,22 @@ public class Dates implements GlobalVariables {
 		}
 		for(LocalDate localDate : LOCALDATES) {
 			TEMPERATURES_MAP.put(localDate, new ArrayList<Temperature>());
+			addTimes(localDate);
 		}
 	}
+	
+	public void addTimes(LocalDate actualDate) throws ParseException {
+		String initTime = "23:50";
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+		Date d = sdf.parse(initTime);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		for(int i = 0; i < 144; i++) {
+			TEMPERATURES_MAP.get(actualDate).add(new Temperature());
+			cal.add(Calendar.MINUTE, 10);
+			String newTime = sdf.format(cal.getTime());
+			TEMPERATURES_MAP.get(actualDate).get(i).setTime(newTime);
+		}
+	}
+
 }

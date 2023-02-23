@@ -40,10 +40,7 @@ public class Calculation implements GlobalVariables {
 				TEMPERATURES.get(i).setRoomTemp2(roomTemp2);
 				roomTemp1 = roomTemp2;
 			}
-
 		}
-		
-		last24Average();
 	}
 	
 	public void tau() {
@@ -62,11 +59,11 @@ public class Calculation implements GlobalVariables {
 		return startTimeIndex;
 	}
 	
-	public void last24Average() {
+	public Double last24hAverage(int indexOfTEMPERATURES) {
 		Double sum = 0.0;
 		Double temp = 0.0;
 		int divider = 144;
-		for(int i = TEMPERATURES.size() - 1; i >= TEMPERATURES.size() - 144; i--) {
+		for(int i = indexOfTEMPERATURES - 1; i > indexOfTEMPERATURES - 145; i--) {
 			temp = TEMPERATURES.get(i).getOutdoorTemp();
 			if(temp != null) {
 				sum+= temp;
@@ -74,7 +71,7 @@ public class Calculation implements GlobalVariables {
 				divider--;
 			}
 		}
-		System.out.println("Az utolsó 24 óra átlaga: " + sum/divider);
+		return sum/divider;
 	}
-	
+
 }

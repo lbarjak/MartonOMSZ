@@ -20,9 +20,13 @@ public class App implements GlobalVariables {
     	Dates dates = new Dates();
 		dates.elapsedDays(startDate, endDate);//startDate - nowDate --> LOCALDATES
 		
-		new WeatherQuery().steps();//LOCALDATES --> TEMPERATURES_MAP
+		WeatherQuery weatherQuery = new WeatherQuery();
+		int indexOfTEMPERATURES = weatherQuery.steps();//LOCALDATES --> TEMPERATURES_MAP
 		
-		new Calculation().calculation(thermalTimeConstant, startTimeString, initialRoomTemperature);
+		Calculation calculation = new Calculation();
+		calculation.calculation(thermalTimeConstant, startTimeString, initialRoomTemperature);
+		Double last24hAverage = calculation.last24hAverage(indexOfTEMPERATURES);
+		System.out.println("last24hAverage " + last24hAverage);
 
 		//new Writeout().toScreen();
 		new Writeout().toCSV();
