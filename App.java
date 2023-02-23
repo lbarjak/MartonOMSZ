@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class App implements GlobalVariables {
 	
-	static String startDateString = "2023-02-18";
+	static String startDateString = "2023-02-11";
 	static String endDateString = "2023-02-26";
 	static String startTimeString = "17:00";
 	static Double initialRoomTemperature = 17d;
@@ -24,7 +24,8 @@ public class App implements GlobalVariables {
 		
 		new Calculation().calculation(thermalTimeConstant, startTimeString, initialRoomTemperature);
 
-		new Writeout().toScreen();
+		//new Writeout().toScreen();
+		new Writeout().toCSV();
 
     }
     
