@@ -19,10 +19,15 @@ public class WeatherQuery implements GlobalVariables {
 	ArrayList<String> outdoorTemperatureString;
 	Double outdoorTemperature;
 	int id = 444; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
+	LocalDate today = LocalDate.now();
 	
 	public void steps() throws IOException, ParseException {
 		for(LocalDate localDate : LOCALDATES) {
-			query(localDate);
+			if(!localDate.isAfter(today)) {
+				query(localDate);
+			} else {
+				//itt jöhet az átlaggal vagy az előjelzéssel feltöltés
+			}
 		}
 	}
 	
