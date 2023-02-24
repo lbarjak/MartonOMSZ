@@ -99,5 +99,19 @@ public class Calculation implements GlobalVariables {
 		}
 		return i;
 	}
+	
+	public void forecast(int endIndex, Double last24hAverage) {
+		roomTemp1 = TEMPERATURES.get(endIndex-1).getRoomTemp2();
+		for(int i = endIndex; i < TEMPERATURES.size(); i++) {
+			TEMPERATURES.get(i).setOutdoorTemp(last24hAverage);
+			TEMPERATURES.get(i).setRoomTemp1(roomTemp1);
+			outdoorTemp = TEMPERATURES.get(i).getOutdoorTemp();
+			if(outdoorTemp != null) {
+				tau();
+				TEMPERATURES.get(i).setRoomTemp2(roomTemp2);
+				roomTemp1 = roomTemp2;
+			}
+		}
+	}
 
 }
