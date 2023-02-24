@@ -27,7 +27,7 @@ public class App implements GlobalVariables {
 		calculation.calculation(thermalTimeConstant, startTimeString, initialRoomTemperature);
 		Double last24hAverage = calculation.last24hAverage(indexOfTEMPERATURES);
 		System.out.println("last24hAverage " + last24hAverage);
-
+		calculation.endIndex();
 		//new Writeout().toScreen();
 		new Writeout().toCSV();
 

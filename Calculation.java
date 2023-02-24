@@ -1,6 +1,7 @@
 package eu.barjak.java.MartonOmsz;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -76,6 +77,20 @@ public class Calculation implements GlobalVariables {
 			}
 		}
 		return sum/divider;
+	}
+	
+	public void endIndex() {
+		String dateTimeString;
+		LocalDateTime now = LocalDateTime.now();
+		DateTimeFormatter formatNow = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		for(int i = 0; i < TEMPERATURES.size(); i++) {
+			dateTimeString = TEMPERATURES.get(i).getDate().toString() 
+					+ " " 
+					+ TEMPERATURES.get(i).getTime();
+			System.out.println(dateTimeString);
+			System.out.println(formatNow.format(now).toString());
+			//különbség?
+		}
 	}
 
 }
