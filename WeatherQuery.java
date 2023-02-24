@@ -5,12 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,9 +50,6 @@ public class WeatherQuery implements GlobalVariables {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
 				indexOfTEMPERATURES++;
-//			} else {//Ha null érték van szám helyett, eldobjuk a POJO-t is
-//				TEMPERATURES_MAP.get(actualDate).remove(i);
-//				outdoorTemperatureString.remove(i--);
 			}
 		}
 	}

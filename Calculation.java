@@ -30,6 +30,10 @@ public class Calculation implements GlobalVariables {
 				temperature.setDay(day);
 			}
 		}
+		
+		for(int i = 0; i < TEMPERATURES.size(); i++) {
+			TEMPERATURES.get(i).setElapsedDays(i/144);
+		}
 			
 		int startTimeIndex = searchStartTimeIndex(startTimeString);
 		for(int i = startTimeIndex; i < TEMPERATURES.size(); i++) {

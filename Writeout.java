@@ -12,6 +12,7 @@ public class Writeout implements GlobalVariables {
 	Double roomTemp1;
 	Double roomTemp2;
 	LocalDate date;
+	int elapsedDays;
 	
 	public void toScreen() {
 		for(Temperature temperature : TEMPERATURES) {
@@ -21,7 +22,9 @@ public class Writeout implements GlobalVariables {
 			roomTemp1 = temperature.getRoomTemp1();
 			roomTemp2 = temperature.getRoomTemp2();
 			date = temperature.getDate();
-			System.out.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + roomTemp1);
+			elapsedDays = temperature.getElapsedDays();
+			
+			System.out.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + elapsedDays + "|" + roomTemp1);
 		}
 	}
 	
@@ -34,7 +37,8 @@ public class Writeout implements GlobalVariables {
 			roomTemp1 = temperature.getRoomTemp1();
 			roomTemp2 = temperature.getRoomTemp2();
 			date = temperature.getDate();
-			output.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + roomTemp1);
+			elapsedDays = temperature.getElapsedDays();
+			output.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + elapsedDays + "|" + roomTemp1);
 		}
 		output.close();
 	}

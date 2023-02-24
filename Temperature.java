@@ -10,51 +10,49 @@ public class Temperature {
 	private Double roomTemp1;
 	private Double roomTemp2;
 	private Double outdoorTemp;
+	private int elapsedDays;
 	
 	public Temperature() {
 	}
 	
-	public Temperature(LocalDate date, String time, String day, Double roomTemp1, Double roomTemp2, Double outdoorTemp){
-		this.date = date;
-		this.time = time;
-		this.day = day;
-		this.roomTemp1 = roomTemp1;
-		this.roomTemp2 = roomTemp2;
-		this.outdoorTemp = outdoorTemp;
+	public void setElapsedDays(int elapsedDays) {
+		this.elapsedDays = elapsedDays;
 	}
-	
+	public int getElapsedDays() {
+		return elapsedDays;
+	}
 	public Double getOutdoorTemp() {
-		return this.outdoorTemp;
+		return outdoorTemp;
 	}
 	public void setOutdoorTemp(Double outdoorTemp) {
 		this.outdoorTemp = outdoorTemp;
 	}
 	public LocalDate getDate() {
-		return this.date;
+		return date;
 	}
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public String getTime() {
-		return this.time;
+		return time;
 	}
 	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getDay() {
-		return this.day;
+		return day;
 	}
 	public void setDay(String day) {
 		this.day = day;
 	}
 	public Double getRoomTemp1() {
-		return this.roomTemp1;
+		return roomTemp1;
 	}
 	public void setRoomTemp1(Double roomTemp1) {
 		this.roomTemp1 = roomTemp1;
 	}
 	public Double getRoomTemp2() {
-		return this.roomTemp2;
+		return roomTemp2;
 	}
 	public void setRoomTemp2(Double roomTemp2) {
 		this.roomTemp2 = roomTemp2;
