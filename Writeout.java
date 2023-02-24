@@ -14,20 +14,6 @@ public class Writeout implements GlobalVariables {
 	LocalDate date;
 	int elapsedDays;
 	
-	public void toScreen() {
-		for(Temperature temperature : TEMPERATURES) {
-			time = temperature.getTime();
-			day = temperature.getDay();
-			outdoorTemp = temperature.getOutdoorTemp();
-			roomTemp1 = temperature.getRoomTemp1();
-			roomTemp2 = temperature.getRoomTemp2();
-			date = temperature.getDate();
-			elapsedDays = temperature.getElapsedDays();
-			
-			System.out.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + elapsedDays + "|" + roomTemp1);
-		}
-	}
-	
 	public void toCSV() throws FileNotFoundException {
 		PrintWriter output = new PrintWriter("hofokok.csv");
 		for(Temperature temperature : TEMPERATURES) {

@@ -12,8 +12,6 @@ public class Dates implements GlobalVariables {
 	
 	public void elapsedDays(LocalDate startDate, LocalDate endDate) throws ParseException {
 		LocalDate tmpDate;
-		//LocalDate nowDate = LocalDate.now();
-		//long elapsed = Period.between(startDate, nowDate).getDays();
 		long elapsed = Period.between(startDate, endDate).getDays();
 		for(int i = 0; i <= elapsed; i++) {
 			tmpDate = startDate.plus(Period.ofDays(i));
