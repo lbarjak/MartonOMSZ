@@ -6,9 +6,9 @@ import java.time.LocalDate;
 
 public class App implements GlobalVariables {
 	
-	static String startDateString = "2023-02-11";
-	static String endDateString = "2023-02-26";
-	static String startTimeString = "17:00";
+	static String startDateString = "2023-02-25";
+	static String endDateString = "2023-03-05";
+	static String startTimeString = "17:30";
 	static Double initialRoomTemperature = 17d;
 	static final Double thermalTimeConstant = 50d;
 	

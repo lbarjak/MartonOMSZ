@@ -36,13 +36,17 @@ public class WeatherQuery implements GlobalVariables {
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
 			if (inputLine.contains("data: [")) {
+				processing(inputLine, actualDate);
 				break;
 			}
 		}
-		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
-		Matcher matcher = pattern.matcher(inputLine);
+	}
+	
+	public void processing(String inputLine, LocalDate actualDate) {
+	Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
+	Matcher matcher = pattern.matcher(inputLine);
 		while (matcher.find()) {
-            outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
+			outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
 
 		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
