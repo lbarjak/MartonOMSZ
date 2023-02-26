@@ -36,6 +36,7 @@ public class WeatherQuery implements GlobalVariables {
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
 			if (inputLine.contains("data: [")) {
+				System.out.println(actualDate + " adatok feldolgozása...");
 				processing(inputLine, actualDate);
 				break;
 			}
@@ -49,7 +50,7 @@ public class WeatherQuery implements GlobalVariables {
 			outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
 
-		for (int i = 0; i <= outdoorTemperatureString.size() - 1; i++) {
+		for (int i = 0; i < outdoorTemperatureString.size(); i++) {
 			if(!outdoorTemperatureString.get(i).equals("null")) {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
