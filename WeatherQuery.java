@@ -12,28 +12,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WeatherQuery implements GlobalVariables {
-	
-	ArrayList<String> outdoorTemperatureString;
-	Double outdoorTemperature;
-	int id = 590; //MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
-	LocalDate today = LocalDate.now();
+
+	int id = 590; // MartonOMSZ 590, MartonBambi 444, LagymanyosOMSZ 615
 	int indexOfTEMPERATURES = 0;
-	
+
 	public int steps() throws IOException, ParseException {
-		for(LocalDate localDate : LOCALDATES) {
-			if(!localDate.isAfter(today)) {
+		LocalDate today = LocalDate.now();
+		for (LocalDate localDate : LOCALDATES) {
+			if (!localDate.isAfter(today)) {
 				query(localDate);
 			}
 		}
-		if(indexOfTEMPERATURES % 144 == 0) {
+		if (indexOfTEMPERATURES % 144 == 0) {
 			System.out.println(today + ": nincs még mai adat");
 		}
 		return indexOfTEMPERATURES;
 	}
-	
+
 	public void query(LocalDate actualDate) throws IOException, ParseException {
-		URL url = new URL("https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" 
-		+ id + "&date=" + actualDate.toString());
+		URL url = new URL(
+				"https://www.metnet.hu/online-allomasok?sub=showosdata&ostid=" + id + "&date=" + actualDate.toString());
 		BufferedReader in;
 		in = new BufferedReader(new InputStreamReader(url.openStream()));
 		String inputLine;
@@ -45,16 +43,19 @@ public class WeatherQuery implements GlobalVariables {
 			}
 		}
 	}
-	
+
 	public void processing(String inputLine, LocalDate actualDate) {
-	Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");//a grafikon hőmérsékletértékei
-	Matcher matcher = pattern.matcher(inputLine);
-		while (matcher.find()) {
-			outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
-		}
-		for (int i = 0; i < outdoorTemperatureString.size(); i++) {//144
-			if(!outdoorTemperatureString.get(i).equals("null")) {
-				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
+		String outdoorTemperatureString;
+		ArrayList<String> outdoorTemperatureList;
+		Double outdoorTemperature;
+		Pattern pattern = Pattern.compile("(?<=\\[).+(?=\\])");// a grafikon hőmérsékletértékei
+		Matcher matcher = pattern.matcher(inputLine);
+		matcher.find();
+		outdoorTemperatureString = matcher.group();
+		outdoorTemperatureList = new ArrayList<String>(Arrays.asList(outdoorTemperatureString.split(",")));
+		for (int i = 0; i < outdoorTemperatureList.size(); i++) {// 144
+			if (!outdoorTemperatureList.get(i).equals("null")) {
+				outdoorTemperature = Double.parseDouble(outdoorTemperatureList.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
 				indexOfTEMPERATURES++;
 			}
