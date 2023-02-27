@@ -25,6 +25,9 @@ public class WeatherQuery implements GlobalVariables {
 				query(localDate);
 			}
 		}
+		if(indexOfTEMPERATURES % 144 == 0) {
+			System.out.println(today + ": nincs még mai adat");
+		}
 		return indexOfTEMPERATURES;
 	}
 	
@@ -36,7 +39,7 @@ public class WeatherQuery implements GlobalVariables {
 		String inputLine;
 		while ((inputLine = in.readLine()) != null) {
 			if (inputLine.contains("data: [")) {
-				System.out.println(actualDate + " adatok feldolgozása...");
+				System.out.println(actualDate + ": adatok feldolgozása...");
 				processing(inputLine, actualDate);
 				break;
 			}
@@ -49,8 +52,7 @@ public class WeatherQuery implements GlobalVariables {
 		while (matcher.find()) {
 			outdoorTemperatureString = new ArrayList<String>(Arrays.asList(matcher.group().split(",")));
 		}
-
-		for (int i = 0; i < outdoorTemperatureString.size(); i++) {
+		for (int i = 0; i < outdoorTemperatureString.size(); i++) {//144
 			if(!outdoorTemperatureString.get(i).equals("null")) {
 				outdoorTemperature = Double.parseDouble(outdoorTemperatureString.get(i));
 				TEMPERATURES_MAP.get(actualDate).get(i).setOutdoorTemp(outdoorTemperature);
