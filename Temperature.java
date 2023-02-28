@@ -11,10 +11,17 @@ public class Temperature {
 	private Double roomTemp2;
 	private Double outdoorTemp;
 	private int elapsedDays;
+	private Double forecast;
 	
 	public Temperature() {
 	}
 	
+	public void setForecast(Double forecast) {
+		this.forecast = forecast;
+	}
+	public Double getForecast() {
+		return forecast;
+	}
 	public void setElapsedDays(int elapsedDays) {
 		this.elapsedDays = elapsedDays;
 	}

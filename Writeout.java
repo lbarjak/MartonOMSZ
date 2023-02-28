@@ -13,6 +13,7 @@ public class Writeout implements GlobalVariables {
 		Double roomTemp1;
 		LocalDate date;
 		int elapsedDays;
+		Double forecast;
 		PrintWriter output = new PrintWriter("hofokok.csv");
 		for (Temperature temperature : TEMPERATURES) {
 			time = temperature.getTime();
@@ -21,7 +22,8 @@ public class Writeout implements GlobalVariables {
 			roomTemp1 = temperature.getRoomTemp1();
 			date = temperature.getDate();
 			elapsedDays = temperature.getElapsedDays();
-			output.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + elapsedDays + "|" + roomTemp1);
+			forecast = temperature.getForecast();
+			output.println(date + "|" + time + "|" + day + "|" + outdoorTemp + "|" + elapsedDays + "|" + roomTemp1 + "|" + forecast);
 		}
 		output.close();
 	}

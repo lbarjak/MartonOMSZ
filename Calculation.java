@@ -80,6 +80,9 @@ public class Calculation implements GlobalVariables {
 		for (int i = indexOfTEMPERATURES; i < TEMPERATURES.size(); i++) {
 			TEMPERATURES.get(i).setOutdoorTemp(last24hAverage);
 			TEMPERATURES.get(i).setRoomTemp1(roomTemp1);
+			if(i >= indexOfTEMPERATURES) {
+				TEMPERATURES.get(i).setForecast(roomTemp1);
+			}
 			outdoorTemp = TEMPERATURES.get(i).getOutdoorTemp();
 			if (outdoorTemp != null) {
 				tau();
